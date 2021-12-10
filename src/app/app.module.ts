@@ -12,6 +12,7 @@ import { RegistaCreateComponent } from './regista/regista-create/regista-create.
 import { FormsModule } from '@angular/forms';
 import { FilmListComponent } from './film/film-list/film-list.component';
 import { FilmDetailComponent } from './film/film-detail/film-detail.component';
+import { FilmCreateComponent } from './film/film-create/film-create.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FilmDetailComponent } from './film/film-detail/film-detail.component';
     RegistaListComponent,
     RegistaCreateComponent,
     FilmListComponent,
-    FilmDetailComponent
+    FilmDetailComponent,
+    FilmCreateComponent
   ],
   imports: [
     BrowserModule,

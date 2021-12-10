@@ -31,6 +31,14 @@ export class FilmService {
     );
   }
 
+  /** POST: add a new regista to the server */
+  addFilm(filmInput: Film): Observable<Film> {
+    return this.http.post<Film>(this.apiServer, filmInput, this.httpOptions).pipe(
+      tap((newFilm: Film) => console.log(`added film w/ id=${newFilm.id}`)),
+      catchError(this.handleError<Film>('addFilm'))
+    );
+  }
+
 
   /**
      * Handle Http operation that failed.
