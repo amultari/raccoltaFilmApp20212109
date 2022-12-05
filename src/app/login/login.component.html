@@ -1,0 +1,84 @@
+<main class="flex-shrink-0">
+  <div class="container">
+
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorMessage">
+      {{errorMessage}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class='card'>
+      <div class='card-header'>
+        <h5>Login</h5>
+      </div>
+      <div class='card-body'>
+
+        <form (ngSubmit)="save(f)" #f="ngForm" class="row g-3">
+
+          <div class="col-md-6">
+            <label>Username<span class="text-danger">*</span></label>
+            <input type="text"
+                   class="form-control"
+                   placeholder="Inserisci la username"
+                   required
+                   name="username"
+                   #usernameRef="ngModel"
+                   [ngModel]="loginForm?.username"
+                   [ngClass]="{'is-invalid': usernameRef.invalid && usernameRef.dirty }">
+            <span class="invalid-feedback">
+              <span *ngIf="usernameRef.errors?.['required']">
+                  Username obbligatoria
+              </span>
+            </span>
+          </div>
+
+          <div class="col-md-6">
+            <label>Password<span class="text-danger">*</span></label>
+            <input type="password"
+                   class="form-control"
+                   placeholder="Inserire la password"
+                   required
+                   pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}"
+                   name="genere"
+                   [ngModel]="loginForm?.password"
+                   #passwordRef="ngModel"
+                   [ngClass]="{'is-invalid': passwordRef.invalid && passwordRef.dirty }">
+            <span class="invalid-feedback">
+                <span *ngIf="passwordRef.errors?.['required']">
+                    Password obbligatoria
+                </span>
+                <span *ngIf="passwordRef.errors?.['pattern']">
+                    La password deve avere essere così composta:
+                    <li>Alemno 6 caratteri</li>
+                    <li>Almeno una minuscola</li>
+                    <li>Almeno una maiuscola</li>
+                    <li>Alemno un numero</li>
+                    <li>Alemno un carattere speciale</li>
+                </span>
+            </span>
+          </div>
+
+
+          <div class="col-12">
+            <button type="submit"
+                    name="submit"
+                    value="submit"
+                    id="submit"
+                    [disabled]="f.invalid"
+                    class="btn btn-primary">Login</button>
+          </div>
+
+
+        </form>
+
+
+
+        <!-- end card-body -->
+      </div>
+      <!-- end card -->
+    </div>
+    <!-- end container -->
+  </div>
+
+  <!-- end main -->
+</main>

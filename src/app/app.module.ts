@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { FilmListComponent } from './film/film-list/film-list.component';
 import { FilmDetailComponent } from './film/film-detail/film-detail.component';
 import { FilmCreateComponent } from './film/film-create/film-create.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FilmCreateComponent } from './film/film-create/film-create.component';
     RegistaCreateComponent,
     FilmListComponent,
     FilmDetailComponent,
-    FilmCreateComponent
+    FilmCreateComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
