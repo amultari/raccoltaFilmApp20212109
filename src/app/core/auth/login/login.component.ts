@@ -13,17 +13,20 @@ import {User} from "../../../model/user";
 export class LoginComponent implements OnInit {
 
   loginForm!: User;
-  errorMessage: string = "";
   username: string = "";
 
-  constructor(private loginService: AuthService, private route: Router) { }
+  constructor(private authService: AuthService, private route: Router) { }
 
   ngOnInit(): void {
   }
 
   save(loginForm: NgForm) {
-    this.loginService.login(loginForm.value).subscribe(res => {
-      this.route.navigateByUrl("welcome");
+    this.authService.login(loginForm.value).subscribe(res => {
+      if(res){
+        this.authService.setUserLogged(res);
+        this.route.navigateByUrl("welcome");
+      }
+
     });
   }
 }
