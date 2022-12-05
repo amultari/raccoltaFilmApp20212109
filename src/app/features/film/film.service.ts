@@ -1,11 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of, tap } from 'rxjs';
-import { Film } from '../model/film';
+import { Film } from '../../model/film';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class FilmService {
 
   private apiServer = 'http://localhost:8080/api/film';

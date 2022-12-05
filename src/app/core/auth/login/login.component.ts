@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {LoginService} from "./login.service";
+import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
-import {User} from "../model/user";
+import {User} from "../../../model/user";
 
 
 @Component({
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   errorMessage: string = "";
   username: string = "";
 
-  constructor(private loginService: LoginService, private route: Router) { }
+  constructor(private loginService: AuthService, private route: Router) { }
 
   ngOnInit(): void {
   }

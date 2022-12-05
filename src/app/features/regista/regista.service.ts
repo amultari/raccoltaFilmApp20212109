@@ -1,11 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of, tap } from 'rxjs';
-import { Regista } from '../model/regista';
+import { Regista } from '../../model/regista';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RegistaService {
 
   private apiServer = 'http://localhost:8080/api/regista';
