@@ -31,6 +31,10 @@ export class AuthService {
     return this.userLogged$.value ? this.userLogged$.value.role : null;
   }
 
+  getUserToken(): string | null {
+    return this.userLogged$.value ? this.userLogged$.value.token : null;
+  }
+
   login(loginForm: User): Observable<User>{
     return of({ username: loginForm.username, token: "123456", role: "USER"});
     //return this.http.post<User>("login", JSON.stringify(loginForm));
