@@ -26,13 +26,14 @@
             </span>
           </div>
 
+          <!-- pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}" -->
           <div class="col-md-6">
             <label>Password<span class="text-danger">*</span></label>
             <input type="password"
                    class="form-control"
                    placeholder="Inserire la password"
                    required
-                   pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}"
+
                    name="genere"
                    [ngModel]="loginForm?.password"
                    #passwordRef="ngModel"

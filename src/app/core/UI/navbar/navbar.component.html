@@ -1,26 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="Eighth navbar example">
-    <div class="container">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07"
-            aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarsExample07">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/dashboard/welcome">Home</a>
-                </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/dashboard/film/list">Film</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/dashboard/regista/list">Regista</a>
-              </li>
-            </ul>
-        </div>
-        <span class="navbar-text" style="margin-right: 5px">{{ (authService.getUserLogged() | async)?.username }}</span>
-        <button class="btn btn-sm btn-outline-danger" type="button" (click)="logout()">Logout</button>
-
-
-    </div>
-</nav>
+<mat-toolbar color="primary">
+  <button mat-button routerLink="/dashboard/welcome">Home</button>
+  <button mat-button routerLink="/dashboard/film/list">Film</button>
+  <button mat-button routerLink="/dashboard/regista/list">Regista</button>
+  <span class="example-spacer"></span>
+  <div>
+    <span>{{ (authService.getUserLogged() | async)?.username }}</span>
+  </div>
+  <button mat-button color="warn" (click)="logout()">Logout</button>
+</mat-toolbar>
