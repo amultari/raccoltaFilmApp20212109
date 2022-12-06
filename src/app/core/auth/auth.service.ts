@@ -9,30 +9,34 @@ import {HttpClient} from "@angular/common/http";
 export class AuthService {
 
 
-  userLogged$: BehaviorSubject<User> = new BehaviorSubject<User>({});
-  _userLogged$: Observable<User> = this.userLogged$.asObservable();
+  userLogged$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+  _userLogged$: Observable<User | null> = this.userLogged$.asObservable();
 
 
   constructor(private http: HttpClient) { }
 
-  setUserLogged(user: User){
+  setUserLogged(user: User | null){
     this.userLogged$.next(user);
   }
 
-  getUserLogged(): Observable<User>{
+  getUserLogged(): Observable<User | null>{
     return this._userLogged$;
   }
 
   isLoggedIn(): boolean {
-    return !!this.userLogged$.value.token;
+    return this.userLogged$.value ? !!this.userLogged$.value.token : false;
+  }
+
+  getUserRole(): "ADMIN" | "USER" | null {
+    return this.userLogged$.value ? this.userLogged$.value.role : null;
   }
 
   login(loginForm: User): Observable<User>{
-    return of({ username: loginForm.username, token: "123456"});
+    return of({ username: loginForm.username, token: "123456", role: "USER"});
     //return this.http.post<User>("login", JSON.stringify(loginForm));
   }
 
   logout() {
-    this.setUserLogged({});
+    this.setUserLogged(null);
   }
 }
