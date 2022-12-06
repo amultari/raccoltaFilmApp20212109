@@ -1,79 +1,47 @@
-<main class="flex-shrink-0">
-  <div class="container">
-
-    <div class='card'>
-      <div class='card-header'>
-        <h5>Login</h5>
-      </div>
-      <div class='card-body'>
-
-        <form (ngSubmit)="save(f)" #f="ngForm" class="row g-3">
-
-          <div class="col-md-6">
-            <label>Username<span class="text-danger">*</span></label>
-            <input type="text"
-                   class="form-control"
-                   placeholder="Inserisci la username"
-                   required
-                   name="username"
-                   #usernameRef="ngModel"
-                   [ngModel]="loginForm?.username"
-                   [ngClass]="{'is-invalid': usernameRef.invalid && usernameRef.dirty }">
-            <span class="invalid-feedback">
-              <span *ngIf="usernameRef.errors?.['required']">
-                  Username obbligatoria
-              </span>
-            </span>
-          </div>
-
+<form (ngSubmit)="save(f)" #f="ngForm">
+  <div style="display: flex; justify-content: center; margin-top: 5%">
+    <mat-card style="width: 20%">
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <mat-card-content style="display: flex; gap: 10px; flex-direction: column">
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            type="text"
+            required
+            name="username"
+            #usernameRef="ngModel"
+            [ngModel]="loginForm?.username">
+          <mat-error>Username obbligatoria</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
           <!-- pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}" -->
-          <div class="col-md-6">
-            <label>Password<span class="text-danger">*</span></label>
-            <input type="password"
-                   class="form-control"
-                   placeholder="Inserire la password"
-                   required
+          <input
+            matInput
+            type="password"
+            required
 
-                   name="genere"
-                   [ngModel]="loginForm?.password"
-                   #passwordRef="ngModel"
-                   [ngClass]="{'is-invalid': passwordRef.invalid && passwordRef.dirty }">
-            <span class="invalid-feedback">
-                <span *ngIf="passwordRef.errors?.['required']">
-                    Password obbligatoria
-                </span>
-                <span *ngIf="passwordRef.errors?.['pattern']">
-                    La password deve avere essere così composta:
-                    <li>Alemno 6 caratteri</li>
-                    <li>Almeno una minuscola</li>
-                    <li>Almeno una maiuscola</li>
-                    <li>Alemno un numero</li>
-                    <li>Alemno un carattere speciale</li>
-                </span>
-            </span>
-          </div>
-
-
-          <div class="col-12">
-            <button type="submit"
-                    name="submit"
-                    value="submit"
-                    id="submit"
-                    [disabled]="f.invalid"
-                    class="btn btn-primary">Login</button>
-          </div>
-
-
-        </form>
-
-
-
-        <!-- end card-body -->
-      </div>
-      <!-- end card -->
-    </div>
-    <!-- end container -->
+            name="password"
+            [ngModel]="loginForm?.password"
+            #passwordRef="ngModel">
+          <mat-error *ngIf="passwordRef.errors?.['pattern']">
+            La password deve avere essere così composta:
+            <li>Alemno 6 caratteri</li>
+            <li>Almeno una minuscola</li>
+            <li>Almeno una maiuscola</li>
+            <li>Alemno un numero</li>
+            <li>Alemno un carattere speciale</li></mat-error>
+          <mat-error *ngIf="passwordRef.errors?.['required']">
+            Password obbligatoria
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary">LOGIN</button>
+      </mat-card-actions>
+    </mat-card>
   </div>
-
-  <!-- end main -->
-</main>
+</form>
