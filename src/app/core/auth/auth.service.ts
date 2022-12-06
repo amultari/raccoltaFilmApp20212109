@@ -23,6 +23,10 @@ export class AuthService {
     return this._userLogged$;
   }
 
+  isLoggedIn(): boolean {
+    return !!this.userLogged$.value.token;
+  }
+
   login(loginForm: User): Observable<User>{
     return of({ username: loginForm.username, token: "123456"});
     //return this.http.post<User>("login", JSON.stringify(loginForm));
