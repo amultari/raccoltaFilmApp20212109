@@ -4,6 +4,7 @@ import {WelcomeComponent} from "./welcome.component";
 import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from "../../core/auth/login/login.component";
 import {SharedModule} from "../../shared/shared.module";
+import {MaterialModule} from "../../shared/material.module";
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    MaterialModule
   ]
 })
 export class WelcomeModule { }
