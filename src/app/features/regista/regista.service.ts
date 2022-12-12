@@ -20,6 +20,17 @@ export class RegistaService {
     return this.http.get<Regista[]>(this.apiServer)
   }
 
+  getRegista(id: string): Observable<Regista> {
+    return this.http.get<Regista>(this.apiServer+"/"+id)
+  }
+
+  updateRegista(registaUpdate: Regista): Observable<Regista> {
+    return this.http.put<Regista>(this.apiServer+"/"+registaUpdate.id, registaUpdate, this.httpOptions).pipe(
+      tap((regista: Regista) => console.log(`updated regista w/ id=${regista.id}`)),
+      catchError(this.handleError<Regista>('updateRegista'))
+    );
+  }
+
   /** POST: add a new regista to the server */
   addRegista(registaInput: Regista): Observable<Regista> {
     return this.http.post<Regista>(this.apiServer, registaInput, this.httpOptions).pipe(

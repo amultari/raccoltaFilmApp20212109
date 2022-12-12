@@ -1,113 +1,92 @@
-<!-- Begin page content -->
-<main class="flex-shrink-0">
-    <div class="container">
+<div class="main-container">
 
+    <form class="mat-elevation-z8 form-container" (ngSubmit)="save(f)" #f="ngForm">
 
-        <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorMessage">
-            {{errorMessage}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <h2>Inserisci nuovo elemento</h2>
+
+        <div class="row-form-container">
+            <mat-form-field appearance="fill" class="input-form">
+                <mat-label>Nome</mat-label>
+                <input 
+                    matInput 
+                    required
+                    minlength="4"
+                    name="nome"
+                    type="text" 
+                    #nomeRef="ngModel"
+                    [(ngModel)]="registaForm.nome"
+                    placeholder="Inserire il nome">
+                    <mat-error *ngIf="nomeRef.errors?.['required']">Nome obbligatorio</mat-error>
+                    <mat-error *ngIf="nomeRef.errors?.['minlength']">Il nome deve avere almeno 4 caratteri</mat-error>
+              </mat-form-field>
+        
+              <mat-form-field appearance="fill" class="input-form">
+                <mat-label>Cognome</mat-label>
+                <input 
+                    matInput 
+                    required
+                    minlength="4"
+                    name="cognome"
+                    type="text" 
+                    #cognomeRef="ngModel"
+                    [(ngModel)]="registaForm.cognome"
+                    placeholder="Inserire il cognome">
+                    <mat-error *ngIf="cognomeRef.errors?.['required']">Cognome obbligatorio</mat-error>
+                    <mat-error *ngIf="cognomeRef.errors?.['minlength']">Il cognome deve avere almeno 4 caratteri</mat-error>
+              </mat-form-field>
+        </div>
+        
+        <div class="row-form-container">
+            <mat-form-field appearance="fill" class="input-form">
+                <mat-label>Nickname</mat-label>
+                <input 
+                    matInput 
+                    required
+                    minlength="4"
+                    type="text" 
+                    name="nickname"
+                    #nicknameRef="ngModel"
+                    [(ngModel)]="registaForm.nickName"
+                    placeholder="Inserire il nickname">
+                    <mat-error *ngIf="nicknameRef.errors?.['required']">Nickname obbligatorio</mat-error>
+                    <mat-error *ngIf="nicknameRef.errors?.['minlength']">Il nickname deve avere almeno 4 caratteri</mat-error>
+              </mat-form-field>
+        
+              <mat-form-field appearance="fill" class="input-form">
+                <mat-label>Data di Nascita</mat-label>
+                <input 
+                    matInput     
+                    required
+                    name="dataDiNascita"                                                                                                                                              
+                    [matDatepicker]="picker"
+                    #dataDiNascitaRef="ngModel"
+                    [(ngModel)]="dataDiNascita">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #picker></mat-datepicker>
+                <mat-error *ngIf="dataDiNascitaRef.errors?.['required']">Data di nascita obbligatoria</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="input-form">
+                <mat-label>Sesso</mat-label>
+                <mat-select 
+                    required
+                    name="sesso"
+                    #sessoRef="ngModel"
+                    [(ngModel)]="registaForm.sesso">
+                  <mat-option value="">Selezionare</mat-option>
+                  <mat-option value="MASCHIO">MASCHIO</mat-option>
+                  <mat-option value="FEMMINA">FEMMINA</mat-option>
+                </mat-select>
+                <mat-error *ngIf="sessoRef.errors?.['required']">Sesso obbligatorio</mat-error>
+              </mat-form-field>
         </div>
 
-        <div class='card'>
-            <div class='card-header'>
-                <h5>Inserisci nuovo elemento</h5>
-            </div>
-            <div class='card-body'>
-
-                <form (ngSubmit)="save(registaForm)" #registaForm="ngForm" class="row g-3">
-
-
-                    <div class="col-md-6">
-                        <label>Nome<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" placeholder="Inserire il nome" required minlength="4"
-                            id="nome" name="nome" [(ngModel)]="regista.nome" #nomeVar="ngModel"
-                            [ngClass]="{'is-invalid': (nomeVar.touched || nomeVar.dirty) && !nomeVar.valid }">
-                        <span class="invalid-feedback">
-                            <span *ngIf="nomeVar.errors?.['required']">
-                                Prego inserire un valore
-                            </span>
-                            <span *ngIf="nomeVar.errors?.['minlength']">
-                                Il campo deve avere almeno due caratteri.
-                            </span>
-                        </span>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label>Cognome<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" placeholder="Inserire il cognome" required minlength="4"
-                            id="cognome" name="cognome" [(ngModel)]="regista.cognome" #cognomeVar="ngModel"
-                            [ngClass]="{'is-invalid': (cognomeVar.touched || cognomeVar.dirty) && !cognomeVar.valid }">
-                        <span class="invalid-feedback">
-                            <span *ngIf="cognomeVar.errors?.['required']">
-                                Prego inserire un valore
-                            </span>
-                            <span *ngIf="cognomeVar.errors?.['minlength']">
-                                Il campo deve avere almeno due caratteri.
-                            </span>
-                        </span>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label>Nickname<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" placeholder="Inserire il nickName" required
-                            minlength="4" id="nickName" name="nickName" [(ngModel)]="regista.nickName"
-                            #nickNameVar="ngModel"
-                            [ngClass]="{'is-invalid': (nickNameVar.touched || nickNameVar.dirty) && !nickNameVar.valid }">
-                        <span class="invalid-feedback">
-                            <span *ngIf="nickNameVar.errors?.['required']">
-                                Prego inserire un valore
-                            </span>
-                            <span *ngIf="nickNameVar.errors?.['minlength']">
-                                Il campo deve avere almeno due caratteri.
-                            </span>
-                        </span>
-                    </div>
-
-                    <div class=" col-md-3">
-                        <label>Data di Nascita<span class="text-danger">*</span></label>
-                        <input type="date" class="form-control" placeholder="dd/MM/yy" required id="dataDiNascita"
-                            name="dataDiNascita" title="formato : gg/mm/aaaa" [(ngModel)]="regista.dataDiNascita"
-                            #dataDiNascitaVar="ngModel"
-                            [ngClass]="{'is-invalid': (dataDiNascitaVar.touched || dataDiNascitaVar.dirty) && !dataDiNascitaVar.valid }">
-                        <span class="invalid-feedback">
-                            <span *ngIf="!dataDiNascitaVar.valid">
-                                Il campo deve essere correttamente valorizzato
-                            </span>
-                        </span>
-                    </div>
-
-                    <div class="col-md-3">
-                        <label>Sesso <span class="text-danger">*</span></label>
-                        <select id="sesso" class="form-select" required name="sesso"
-                            [(ngModel)]="regista.sesso" #sessoVar="ngModel"
-                            [ngClass]="{'is-invalid': (sessoVar.touched || sessoVar.dirty) && !sessoVar.valid }">
-                            <option value="" selected> - Selezionare - </option>
-                            <option value="MASCHIO">MASCHIO</option>
-                            <option value="FEMMINA">FEMMINA</option>
-                        </select>
-                        <span class="invalid-feedback">
-                            <span *ngIf="sessoVar.errors?.['required']">
-                                Prego selezionare un valore
-                            </span>
-                        </span>
-                    </div>
-
-
-                    <div class="col-12">
-                        <button type="submit" name="submit" value="submit" id="submit"
-                            class="btn btn-primary">Conferma</button>
-                    </div>
-
-
-                </form>
-
-
-                <!-- end card-body -->
-            </div>
-            <!-- end card -->
+            
+        <div style="display:flex; justify-content:space-between">
+            <button routerLink="/dashboard/regista/list" mat-raised-button color="primary">Lista Registi</button>
+            <button type="submit" mat-raised-button color="primary">Conferma</button>
         </div>
-        <!-- end container -->
-    </div>
 
-    <!-- end main -->
-</main>
+    </form>
+
+</div>

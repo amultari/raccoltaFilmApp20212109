@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Regista } from 'src/app/model/regista';
 import { RegistaService } from '../regista.service';
@@ -22,7 +22,7 @@ export class RegistaListComponent implements OnInit {
   sub?: Subscription;
   confirmMessage: string = '';
 
-  constructor(private registaService: RegistaService, private route: ActivatedRoute) {
+  constructor(private registaService: RegistaService, private route: ActivatedRoute, private router: Router) {
     this.registaService.getRegisti().subscribe(res => {
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
@@ -42,6 +42,10 @@ export class RegistaListComponent implements OnInit {
         // se non è presente il confirmMessage non faccio nulla
         this.confirmMessage = params['confirmMessage'] ? params['confirmMessage'] : '';
       });
+  }
+
+  modificaRegista(id: number){
+    this.router.navigateByUrl('dashboard/regista/edit/'+id)
   }
 
   ngOnDestroy(): void {

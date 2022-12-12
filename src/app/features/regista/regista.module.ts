@@ -17,6 +17,10 @@ const routes: Routes = [
     component: RegistaCreateComponent
   },
   {
+    path: 'edit/:id',
+    component: RegistaCreateComponent
+  },
+  {
     path: '',
     redirectTo: 'list'
   }
