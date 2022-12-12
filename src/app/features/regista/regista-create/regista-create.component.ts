@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Regista } from 'src/app/model/regista';
+import { SnackbarService } from 'src/app/shared/components/snackbar/snackbar.service';
 import { RegistaService } from '../regista.service';
 
 
@@ -28,6 +29,7 @@ export class RegistaCreateComponent implements OnInit {
 
   constructor(private registaService: RegistaService, 
               private router: Router, 
+              private snackbarService: SnackbarService,
               private activatedRoute: ActivatedRoute,
               private fb: FormBuilder) {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -85,6 +87,7 @@ export class RegistaCreateComponent implements OnInit {
         next: registaItem => {
           this.registaForm = registaItem;
           this.errorMessage = '';
+          this.snackbarService.openSuccessSnackBar("Salvataggio riuscito!");
         },
         error: () => this.errorMessage = 'Attenzione! Inserimento fallito!',
         complete: () => {

@@ -67,7 +67,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         }
       }
     }
-    this.snackbarService.openSnackBar(error);
+    this.snackbarService.openErrorSnackBar(error);
     return throwError(() => new Error(error.message));
 }
 }

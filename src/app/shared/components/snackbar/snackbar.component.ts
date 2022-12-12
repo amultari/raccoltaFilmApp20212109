@@ -9,7 +9,7 @@ import { ErroreResponse } from '../../services/error.interceptor';
 })
 export class SnackbarComponent implements OnInit {
 
-  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: ErroreResponse) {
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: string) {
   }
 
   ngOnInit(): void {

@@ -10,10 +10,19 @@ export class SnackbarService {
 
   constructor(private _snackBar: MatSnackBar) { }
 
-  openSnackBar(errore: ErroreResponse) {
+  openErrorSnackBar(errore: ErroreResponse) {
     this._snackBar.openFromComponent(SnackbarComponent, {
       duration: 3000,
-      data: errore
+      data: errore.message,
+      panelClass: ['error-snackbar']
+    });
+  }
+
+  openSuccessSnackBar(testo: string) {
+    this._snackBar.openFromComponent(SnackbarComponent, {
+      duration: 3000,
+      data: testo,
+      panelClass: ['success-snackbar']
     });
   }
 }
