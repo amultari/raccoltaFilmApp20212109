@@ -5,6 +5,7 @@ import {RegistaListComponent} from "./regista-list/regista-list.component";
 import {RouterModule, Routes} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {RegistaService} from "./regista.service";
+import { MaterialModule } from 'src/app/shared/material.module';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FormsModule
+    FormsModule,
+    MaterialModule
   ],
   providers: [
     RegistaService,

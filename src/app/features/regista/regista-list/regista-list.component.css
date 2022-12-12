@@ -1,0 +1,16 @@
+.main-container{
+    padding: 20px;
+}
+
+.demo-table {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.demo-button-container {
+padding-bottom: 16px;
+}
+
+.demo-button + .demo-button {
+margin-left: 8px;
+}
