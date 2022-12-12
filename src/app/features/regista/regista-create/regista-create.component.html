@@ -1,6 +1,6 @@
 <div class="main-container">
 
-    <form class="mat-elevation-z8 form-container" (ngSubmit)="save(f)" #f="ngForm">
+    <form class="mat-elevation-z8 form-container" (ngSubmit)="save()" [formGroup]="registaReactive">
 
         <h2>Inserisci nuovo elemento</h2>
 
@@ -9,30 +9,23 @@
                 <mat-label>Nome</mat-label>
                 <input 
                     matInput 
-                    required
-                    minlength="4"
                     name="nome"
                     type="text" 
-                    #nomeRef="ngModel"
-                    [(ngModel)]="registaForm.nome"
+                    formControlName="nome"
                     placeholder="Inserire il nome">
-                    <mat-error *ngIf="nomeRef.errors?.['required']">Nome obbligatorio</mat-error>
-                    <mat-error *ngIf="nomeRef.errors?.['minlength']">Il nome deve avere almeno 4 caratteri</mat-error>
+                    <mat-error *ngIf="registaReactive.get('nome')?.hasError('required')">Nome obbligatorio</mat-error>
+                    <mat-error *ngIf="registaReactive.get('nome')?.hasError('minlength')">Il nome deve avere almeno 4 caratteri</mat-error>
               </mat-form-field>
         
               <mat-form-field appearance="fill" class="input-form">
                 <mat-label>Cognome</mat-label>
                 <input 
                     matInput 
-                    required
-                    minlength="4"
-                    name="cognome"
+                    formControlName="cognome"
                     type="text" 
-                    #cognomeRef="ngModel"
-                    [(ngModel)]="registaForm.cognome"
                     placeholder="Inserire il cognome">
-                    <mat-error *ngIf="cognomeRef.errors?.['required']">Cognome obbligatorio</mat-error>
-                    <mat-error *ngIf="cognomeRef.errors?.['minlength']">Il cognome deve avere almeno 4 caratteri</mat-error>
+                    <mat-error *ngIf="registaReactive.get('cognome')?.hasError('required')">Cognome obbligatorio</mat-error>
+                    <mat-error *ngIf="registaReactive.get('cognome')?.hasError('minlength')">Il cognome deve avere almeno 4 caratteri</mat-error>
               </mat-form-field>
         </div>
         
@@ -40,51 +33,44 @@
             <mat-form-field appearance="fill" class="input-form">
                 <mat-label>Nickname</mat-label>
                 <input 
-                    matInput 
-                    required
-                    minlength="4"
+                    matInput
                     type="text" 
-                    name="nickname"
-                    #nicknameRef="ngModel"
-                    [(ngModel)]="registaForm.nickName"
+                    formControlName="nickName"
                     placeholder="Inserire il nickname">
-                    <mat-error *ngIf="nicknameRef.errors?.['required']">Nickname obbligatorio</mat-error>
-                    <mat-error *ngIf="nicknameRef.errors?.['minlength']">Il nickname deve avere almeno 4 caratteri</mat-error>
+                    <mat-error *ngIf="registaReactive.get('nickName')?.hasError('required')">Nickname obbligatorio</mat-error>
+                    <mat-error *ngIf="registaReactive.get('nickName')?.hasError('minlength')">Il nickname deve avere almeno 4 caratteri</mat-error>
               </mat-form-field>
         
               <mat-form-field appearance="fill" class="input-form">
                 <mat-label>Data di Nascita</mat-label>
                 <input 
-                    matInput     
-                    required
+                    matInput
                     name="dataDiNascita"                                                                                                                                              
                     [matDatepicker]="picker"
-                    #dataDiNascitaRef="ngModel"
-                    [(ngModel)]="dataDiNascita">
+                    (dateChange)="dateChangeHandler($event.value)"
+                    formControlName="dataDiNascita">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker touchUi #picker></mat-datepicker>
-                <mat-error *ngIf="dataDiNascitaRef.errors?.['required']">Data di nascita obbligatoria</mat-error>
+                <mat-error *ngIf="registaReactive.get('dataDiNascitaPicker')?.hasError('required')">Data di nascita obbligatoria</mat-error>
               </mat-form-field>
 
               <mat-form-field appearance="fill" class="input-form">
                 <mat-label>Sesso</mat-label>
-                <mat-select 
-                    required
+                <mat-select
                     name="sesso"
-                    #sessoRef="ngModel"
-                    [(ngModel)]="registaForm.sesso">
+                    formControlName="sesso">
                   <mat-option value="">Selezionare</mat-option>
                   <mat-option value="MASCHIO">MASCHIO</mat-option>
                   <mat-option value="FEMMINA">FEMMINA</mat-option>
                 </mat-select>
-                <mat-error *ngIf="sessoRef.errors?.['required']">Sesso obbligatorio</mat-error>
+                <mat-error *ngIf="registaReactive.get('sesso')?.hasError('required')">Sesso obbligatorio</mat-error>
               </mat-form-field>
         </div>
 
             
         <div style="display:flex; justify-content:space-between">
             <button routerLink="/dashboard/regista/list" mat-raised-button color="primary">Lista Registi</button>
-            <button type="submit" mat-raised-button color="primary">Conferma</button>
+            <button [disabled]="registaReactive.invalid" type="submit" mat-raised-button color="primary">Conferma</button>
         </div>
 
     </form>

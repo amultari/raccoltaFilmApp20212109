@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Regista } from 'src/app/model/regista';
 import { RegistaService } from '../regista.service';
@@ -12,12 +12,23 @@ import { RegistaService } from '../regista.service';
 })
 export class RegistaCreateComponent implements OnInit {
 
+  registaReactive = this.fb.group({
+    nome: ['', [Validators.required, Validators.minLength(4)]],
+    cognome: ['', [Validators.required, Validators.minLength(4)]],
+    nickName: ['', [Validators.required, Validators.minLength(4)]],
+    dataDiNascita: ['', [Validators.required]],
+    sesso: ['', [Validators.required]]
+  });
+
   registaForm: Regista = new Regista();
   dataDiNascita: any;
   errorMessage: string = '';
   operazione: 'EDIT' | 'NEW' = 'NEW';
 
-  constructor(private registaService: RegistaService, private router: Router, private activatedRoute: ActivatedRoute,) {
+  constructor(private registaService: RegistaService, 
+              private router: Router, 
+              private activatedRoute: ActivatedRoute,
+              private fb: FormBuilder) {
     this.activatedRoute.paramMap.subscribe(params => {
       const idRegista = params.get('id');
       if (idRegista) {
@@ -29,21 +40,36 @@ export class RegistaCreateComponent implements OnInit {
     });
   }
 
+
+  dateChangeHandler(value: any){
+    this.registaReactive.get("dataDiNascita")?.setValue(new Date(value));
+  }
+
   ngOnInit(): void {
+
   }
 
   getRegista(id: string){
     this.registaService.getRegista(id).subscribe(res => {
-      if(res.dataDiNascita){
-        this.dataDiNascita = new Date(res.dataDiNascita);
-      }
       this.registaForm = res;
+      this.fillForm(res);
     })
   }
 
-  save(registaForm: NgForm): void {
-    console.log('sub ' + JSON.stringify(this.registaForm));
-    this.registaForm.dataDiNascita = this.dataDiNascita.toDate();
+  fillForm(form: Regista){
+    this.registaReactive.get("nome")?.setValue(form.nome);
+    this.registaReactive.get("cognome")?.setValue(form.cognome);
+    this.registaReactive.get("nickName")?.setValue(form.nickName);
+    this.registaReactive.get("dataDiNascita")?.setValue(form.dataDiNascita ? new Date(form.dataDiNascita) : null);
+    this.registaReactive.get("sesso")?.setValue(form.sesso);
+  }
+
+  save(): void {
+    this.registaForm.dataDiNascita = this.registaReactive.get("dataDiNascita")?.value;
+    this.registaForm.nome = this.registaReactive.get("nome")?.value;
+    this.registaForm.cognome = this.registaReactive.get("cognome")?.value;
+    this.registaForm.nickName = this.registaReactive.get("nickName")?.value;
+    this.registaForm.sesso = this.registaReactive.get("sesso")?.value;
     
     if(this.registaForm.id){
       this.registaService.updateRegista(this.registaForm).subscribe({
@@ -68,10 +94,7 @@ export class RegistaCreateComponent implements OnInit {
         }
       });
     }
-    
-      
 
-    
   }
 
 }
