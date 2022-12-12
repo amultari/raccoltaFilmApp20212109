@@ -35,7 +35,7 @@
     
         <ng-container matColumnDef="sesso">
             <th mat-header-cell *matHeaderCellDef> Sesso </th>
-            <td mat-cell *matCellDef="let element"> {{element.sesso}} </td>
+            <td mat-cell *matCellDef="let element">{{element.sesso | sesso}} </td>
         </ng-container>
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -52,4 +52,5 @@ export class RegistaListComponent implements OnInit {
     this.sub?.unsubscribe();
   }
 
+
 }

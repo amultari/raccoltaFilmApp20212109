@@ -6,6 +6,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RegistaService} from "./regista.service";
 import { MaterialModule } from 'src/app/shared/material.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
   {
@@ -36,7 +37,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ],
   providers: [
     RegistaService,
