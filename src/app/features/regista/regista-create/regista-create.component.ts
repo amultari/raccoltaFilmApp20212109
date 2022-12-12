@@ -17,7 +17,8 @@ export class RegistaCreateComponent implements OnInit {
     cognome: ['', [Validators.required, Validators.minLength(4)]],
     nickName: ['', [Validators.required, Validators.minLength(4)]],
     dataDiNascita: ['', [Validators.required]],
-    sesso: ['', [Validators.required]]
+    sesso: ['', [Validators.required]],
+    titolo: ['']
   });
 
   registaForm: Regista = new Regista();
@@ -43,6 +44,14 @@ export class RegistaCreateComponent implements OnInit {
 
   dateChangeHandler(value: any){
     this.registaReactive.get("dataDiNascita")?.setValue(new Date(value));
+  }
+
+  ngAfterViewInit(){
+    this.registaReactive.get('sesso')?.valueChanges.subscribe(res => {
+      if(res){
+        this.registaReactive.get('titolo')?.setValue(res === 'MASCHIO' ? 'Sig.' : 'Sig.ra')
+      }
+    })
   }
 
   ngOnInit(): void {

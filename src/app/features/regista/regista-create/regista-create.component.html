@@ -5,7 +5,17 @@
         <h2>Inserisci nuovo elemento</h2>
 
         <div class="row-form-container">
-            <mat-form-field appearance="fill" class="input-form">
+            <mat-form-field appearance="fill" style="flex: 5%;">
+                <mat-label>Titolo</mat-label>
+                <mat-select
+                    name="titolo"
+                    formControlName="titolo">
+                <mat-option value="Sig.">Sig.</mat-option>
+                <mat-option value="Sig.ra">Sig.ra</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            <mat-form-field appearance="fill" style="flex: 45%;">
                 <mat-label>Nome</mat-label>
                 <input 
                     matInput 
@@ -17,7 +27,7 @@
                     <mat-error *ngIf="registaReactive.get('nome')?.hasError('minlength')">Il nome deve avere almeno 4 caratteri</mat-error>
               </mat-form-field>
         
-              <mat-form-field appearance="fill" class="input-form">
+              <mat-form-field appearance="fill" style="flex: 45%;">
                 <mat-label>Cognome</mat-label>
                 <input 
                     matInput 
