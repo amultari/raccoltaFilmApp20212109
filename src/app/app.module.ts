@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from "./core/auth/auth.interceptor";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ErrorInterceptor } from './shared/services/error.interceptor';
+import { SnackbarService } from './shared/components/snackbar/snackbar.service';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,10 +18,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    SharedModule,
     BrowserAnimationsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    SnackbarService,
   ],
   bootstrap: [AppComponent]
 })

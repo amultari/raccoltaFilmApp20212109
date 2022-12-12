@@ -15,6 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { CUSTOM_DATE_FORMAT } from './custom-date-format';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -34,7 +35,8 @@ import { CUSTOM_DATE_FORMAT } from './custom-date-format';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatSnackBarModule
   ],
   exports: [
     MatFormFieldModule,
@@ -49,7 +51,8 @@ import { CUSTOM_DATE_FORMAT } from './custom-date-format';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'it-IT' },

@@ -2,16 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {IsAdminDirective} from "./directives/is-admin.directive";
 import { SessoPipe } from './pipes/sesso.pipe';
+import { MaterialModule } from './material.module';
 
 
 
 @NgModule({
   declarations: [
     IsAdminDirective,
-    SessoPipe
+    SessoPipe,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule
   ],
   exports: [
     IsAdminDirective,
