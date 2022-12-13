@@ -15,48 +15,9 @@
   </mat-card>
 </div>
 <div class="contenitore">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>Ricerca Registi</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence
-                    and probably just keep going until we run out of words.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" routerLink="/regista/list">Vai alla funzionalità</button>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card class="example-card" *isAdmin="authService.getUserRole()">
-    <mat-card-header>
-      <mat-card-title>Inserisci Nuovo Regista</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence
-                    and probably just keep going until we run out of words.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" routerLink="/regista/create">Vai alla funzionalità</button>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>Lista Film</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence
-                    and probably just keep going until we run out of words.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" routerLink="/film/list">Vai alla funzionalità</button>
-    </mat-card-actions>
-  </mat-card>
+  <app-ui-card [cardBody]="'body card Registi'" [cardLink]="'/regista/list'" [cardTitle]="'Ricerca Registi'"></app-ui-card>
+  <app-ui-card [cardBody]="'body card Nuovo Regista'" [cardLink]="'/regista/create'" [cardTitle]="'Inserisci Nuovo Regista'"></app-ui-card>
+  <app-ui-card [cardBody]="'body card Film'" [cardLink]="'/film/list'" [cardTitle]="'Lista Film'"></app-ui-card>
 </div>
 
 
