@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Regista } from 'src/app/model/regista';
+import { Regista } from 'src/app/models/regista';
 import { RegistaService } from '../regista.service';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
-import { ErroreResponse } from '../../services/error.interceptor';
+import { ErroreResponse } from '../../../core/interceptors/error.interceptor';
 
 @Component({
   selector: 'app-snackbar',

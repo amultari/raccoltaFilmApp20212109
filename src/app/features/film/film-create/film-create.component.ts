@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Film } from 'src/app/model/film';
-import { Regista } from 'src/app/model/regista';
+import { Film } from 'src/app/models/film';
+import { Regista } from 'src/app/models/regista';
 import { RegistaService } from 'src/app/features/regista/regista.service';
 import { FilmService } from '../film.service';
 

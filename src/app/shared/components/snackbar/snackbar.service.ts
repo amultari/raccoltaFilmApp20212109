@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ErroreResponse } from '../../services/error.interceptor';
+import { ErroreResponse } from '../../../core/interceptors/error.interceptor';
 import { SnackbarComponent } from './snackbar.component';
 
 @Injectable({

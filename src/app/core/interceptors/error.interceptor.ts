@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { AuthService } from 'src/app/core/auth/auth.service';
-import { SnackbarService } from '../components/snackbar/snackbar.service';
+import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
 
 export interface ErroreResponse {
   message: any;

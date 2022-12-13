@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Film } from 'src/app/model/film';
+import { Film } from 'src/app/models/film';
 import { FilmService } from '../film.service';
 
 @Component({

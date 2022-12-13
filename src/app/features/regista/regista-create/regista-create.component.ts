@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Regista } from 'src/app/model/regista';
+import { Regista } from 'src/app/models/regista';
 import { SnackbarService } from 'src/app/shared/components/snackbar/snackbar.service';
 import { RegistaService } from '../regista.service';
 
@@ -31,7 +31,7 @@ export class RegistaCreateComponent implements OnInit {
               private snackbarService: SnackbarService,
               private activatedRoute: ActivatedRoute,
               private fb: FormBuilder) {
-                
+
     this.activatedRoute.paramMap.subscribe(params => {
       const idRegista = params.get('id');
       if (idRegista) {

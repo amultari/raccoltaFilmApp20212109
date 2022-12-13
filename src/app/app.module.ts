@@ -6,10 +6,10 @@ import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from "./core/auth/auth.interceptor";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ErrorInterceptor } from './shared/services/error.interceptor';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { SnackbarService } from './shared/components/snackbar/snackbar.service';
 import { SharedModule } from './shared/shared.module';
-import { LayoutModule } from './core/UI/layout.module';
+import { LayoutModule } from './core/layout/layout.module';
 
 @NgModule({
   declarations: [
