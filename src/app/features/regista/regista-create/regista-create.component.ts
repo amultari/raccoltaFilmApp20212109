@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Regista } from 'src/app/model/regista';
 import { SnackbarService } from 'src/app/shared/components/snackbar/snackbar.service';
 import { RegistaService } from '../regista.service';
@@ -13,7 +13,7 @@ import { RegistaService } from '../regista.service';
 })
 export class RegistaCreateComponent implements OnInit {
 
-  registaReactive = this.fb.group({
+  registaReactive: FormGroup = this.fb.group({
     nome: ['', [Validators.required, Validators.minLength(4)]],
     cognome: ['', [Validators.required, Validators.minLength(4)]],
     nickName: ['', [Validators.required, Validators.minLength(4)]],
@@ -27,11 +27,11 @@ export class RegistaCreateComponent implements OnInit {
   errorMessage: string = '';
   operazione: 'EDIT' | 'NEW' = 'NEW';
 
-  constructor(private registaService: RegistaService, 
-              private router: Router, 
+  constructor(private registaService: RegistaService,
               private snackbarService: SnackbarService,
               private activatedRoute: ActivatedRoute,
               private fb: FormBuilder) {
+                
     this.activatedRoute.paramMap.subscribe(params => {
       const idRegista = params.get('id');
       if (idRegista) {

@@ -22,4 +22,4 @@ import {MaterialModule} from "../../shared/material.module";
     FooterComponent
   ]
 })
-export class UiKitModule { }
+export class LayoutModule { }

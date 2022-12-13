@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorInterceptor } from './shared/services/error.interceptor';
 import { SnackbarService } from './shared/components/snackbar/snackbar.service';
 import { SharedModule } from './shared/shared.module';
-import { UiKitModule } from './core/UI/ui-kit.module';
+import { LayoutModule } from './core/UI/layout.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { UiKitModule } from './core/UI/ui-kit.module';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
-    UiKitModule,
+    LayoutModule,
     BrowserAnimationsModule
   ],
   providers: [
