@@ -45,7 +45,7 @@ export class RegistaListComponent implements OnInit {
   }
 
   modificaRegista(id: number){
-    this.router.navigateByUrl('dashboard/regista/edit/'+id)
+    this.router.navigateByUrl('regista/edit/'+id)
   }
 
   ngOnDestroy(): void {

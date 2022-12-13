@@ -7,13 +7,30 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./core/auth/login/login.module').then(m => m.LoginModule)
   },
-  {
-    path: 'dashboard',
-    loadChildren: () => import('./features/dashboard.module').then(m => m.DashboardModule),
+  { 
+    path: 'welcome', 
+    loadChildren: () => import('./features/welcome/welcome.module').then(m => m.WelcomeModule),
     canActivate: [AuthGuard]
   },
-  { path: '**', redirectTo: '/dashboard' },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+  { 
+    path: 'regista', 
+    loadChildren: () => import('./features/regista/regista.module').then(m => m.RegistaModule),
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'film', 
+    loadChildren: () => import('./features/film/film.module').then(m => m.FilmModule),
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: '', 
+    redirectTo: 'welcome', 
+    pathMatch: 'full' 
+  },
+  { 
+    path: '**', 
+    redirectTo: '/welcome' 
+  }
 ];
 
 @NgModule({

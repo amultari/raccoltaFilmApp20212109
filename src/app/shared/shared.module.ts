@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {IsAdminDirective} from "./directives/is-admin.directive";
 import { SessoPipe } from './pipes/sesso.pipe';
 import { MaterialModule } from './material.module';
+import { IsLoggedDirective } from './directives/is-logged.directive';
 
 
 
@@ -10,6 +11,7 @@ import { MaterialModule } from './material.module';
   declarations: [
     IsAdminDirective,
     SessoPipe,
+    IsLoggedDirective
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { MaterialModule } from './material.module';
   ],
   exports: [
     IsAdminDirective,
-    SessoPipe
+    SessoPipe,
+    IsLoggedDirective
   ]
 })
 export class SharedModule { }
