@@ -1,9 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Regista } from 'src/app/models/regista';
 import { SnackbarService } from 'src/app/shared/components/snackbar/snackbar.service';
 import { RegistaService } from '../regista.service';
+
+export interface RegistaForm extends FormGroup<{
+  nome: FormControl<string>;
+  cognome: FormControl<string>;
+  nickName: FormControl<string>;
+  dataDiNascita: FormControl<Date>;
+  sesso: FormControl<string>;
+  titolo: FormControl<string>;
+}>{}
 
 
 @Component({
@@ -12,6 +21,15 @@ import { RegistaService } from '../regista.service';
   styleUrls: ['./regista-create.component.css']
 })
 export class RegistaCreateComponent implements OnInit {
+
+  registaTypedForm: RegistaForm = this.fb.nonNullable.group({
+    nome: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(4)]),
+    cognome: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(4)]),
+    dataDiNascita: this.fb.nonNullable.control(new Date(), [Validators.required]),
+    nickName: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(4)]),
+    sesso: this.fb.nonNullable.control('', [Validators.required]),
+    titolo: this.fb.nonNullable.control(''),
+  });
 
   registaReactive: UntypedFormGroup = this.fb.group({
     nome: ['', [Validators.required, Validators.minLength(4)]],
@@ -22,7 +40,7 @@ export class RegistaCreateComponent implements OnInit {
     titolo: ['']
   });
 
-  registaForm: Regista = new Regista();
+  registaForm!: Regista;
   dataDiNascita: any;
   errorMessage: string = '';
   operazione: 'EDIT' | 'NEW' = 'NEW';
@@ -30,7 +48,7 @@ export class RegistaCreateComponent implements OnInit {
   constructor(private registaService: RegistaService,
               private snackbarService: SnackbarService,
               private activatedRoute: ActivatedRoute,
-              private fb: UntypedFormBuilder) {
+              private fb: FormBuilder) {
 
     this.activatedRoute.paramMap.subscribe(params => {
       const idRegista = params.get('id');
@@ -54,6 +72,11 @@ export class RegistaCreateComponent implements OnInit {
         this.registaReactive.get('titolo')?.setValue(res === 'MASCHIO' ? 'Sig.' : 'Sig.ra')
       }
     })
+    this.registaTypedForm.get('sesso')?.valueChanges.subscribe(res => {
+      if(res){
+        this.registaTypedForm.get('titolo')?.setValue(res === 'MASCHIO' ? 'Sig.' : 'Sig.ra')
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -68,11 +91,9 @@ export class RegistaCreateComponent implements OnInit {
   }
 
   fillForm(form: Regista){
-    this.registaReactive.get("nome")?.setValue(form.nome);
-    this.registaReactive.get("cognome")?.setValue(form.cognome);
-    this.registaReactive.get("nickName")?.setValue(form.nickName);
-    this.registaReactive.get("dataDiNascita")?.setValue(form.dataDiNascita ? new Date(form.dataDiNascita) : null);
-    this.registaReactive.get("sesso")?.setValue(form.sesso);
+    const formattedForm = {...form, dataDiNascita: new Date(form.dataDiNascita)};
+    this.registaReactive.patchValue(formattedForm);
+    this.registaTypedForm.patchValue(formattedForm);
   }
 
   save(): void {

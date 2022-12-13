@@ -7,6 +7,6 @@ export class Film {
         public genere?: string,
         public dataPubblicazione?: Date,
         public minutiDurata?: number,
-        public regista?: Regista
+        public regista?: Partial<Regista>
     ) { }
 }

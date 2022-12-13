@@ -27,18 +27,20 @@ export class FilmCreateComponent implements OnInit {
   save(filmForm: NgForm): void {
     console.log('sub ' + JSON.stringify(this.film));
     if (filmForm.valid) {
-      this.film.regista = {id:this.registaId};
-      this.filmService.addFilm(this.film).subscribe({
-        next: filmItem => {
-          this.film = filmItem;
-          this.errorMessage = '';
-        },
-        error: () => this.errorMessage = 'Attenzione! Inserimento fallito!',
-        complete: () => {
-          if (!this.errorMessage)
-            this.router.navigate([`film/list`], { queryParams: { confirmMessage: 'Operazione effettuata correttamente.' } })
-        }
-      });
+      if(this.registaId){
+        this.film.regista = {id:this.registaId};
+        this.filmService.addFilm(this.film).subscribe({
+          next: filmItem => {
+            this.film = filmItem;
+            this.errorMessage = '';
+          },
+          error: () => this.errorMessage = 'Attenzione! Inserimento fallito!',
+          complete: () => {
+            if (!this.errorMessage)
+              this.router.navigate([`film/list`], { queryParams: { confirmMessage: 'Operazione effettuata correttamente.' } })
+          }
+        });
+      }
     } else
       this.errorMessage = 'Attenzione! Operazione fallita! Il form non è stato validato';
   }
