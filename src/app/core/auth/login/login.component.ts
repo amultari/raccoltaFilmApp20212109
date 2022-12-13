@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from "@angular/forms";
 import {AuthService} from "../auth.service";
-import {Router} from "@angular/router";
 import {User} from "../../../models/user";
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +12,10 @@ import {User} from "../../../models/user";
 })
 export class LoginComponent implements OnInit {
 
-  loginForm!: User;
+  loginForm: Partial<User> = {
+    username: '',
+    password: ''
+  };
   username: string = "";
 
   constructor(private authService: AuthService, private route: Router) { }

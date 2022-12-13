@@ -13,7 +13,7 @@
             required
             name="username"
             #usernameRef="ngModel"
-            [ngModel]="loginForm?.username">
+            [ngModel]="loginForm.username">
           <mat-error>Username obbligatoria</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
@@ -25,7 +25,7 @@
             required
 
             name="password"
-            [ngModel]="loginForm?.password"
+            [ngModel]="loginForm.password"
             #passwordRef="ngModel">
           <mat-error *ngIf="passwordRef.errors?.['pattern']">
             La password deve avere essere così composta:
