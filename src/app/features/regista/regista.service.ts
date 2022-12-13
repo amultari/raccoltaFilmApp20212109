@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Regista } from '../../models/regista';
 
 @Injectable()
 export class RegistaService {
 
-  private apiServer = 'http://localhost:8080/api/regista';
+  private apiServer =  environment.base_url+'/regista';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
