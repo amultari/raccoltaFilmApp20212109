@@ -1,0 +1,66 @@
+<main class="form-signin">
+    <form (ngSubmit)="save(f)" #f="ngForm">
+
+        <!-- <div class="alert alert-danger alert-dismissible fade show d-none" role="alert">
+                ${errorMessage}
+            </div>
+
+            <div class="alert alert-info alert-dismissible fade show d-none" role="alert">
+                ${infoMessage}
+            </div> -->
+
+
+        <img class="mb-4" src="./assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+
+        <div class="form-floating">
+            <input 
+            class="form-control"
+            matInput
+            type="text"
+            required
+            name="username"
+            #usernameRef="ngModel"
+            [ngModel]="loginForm.username" 
+            [ngClass]="{'is-invalid': (usernameRef.touched || usernameRef.dirty) && !usernameRef.valid }">
+            <label for="inputUsername">Username</label>
+            <span class="invalid-feedback">
+                <span *ngIf="usernameRef.errors?.['required']">
+                    Prego inserire un valore
+                </span>
+            </span>
+        </div>
+        <div class="form-floating">
+            <input
+            matInput
+            type="password"
+            required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}"
+            class="form-control"
+            name="password"
+            [ngModel]="loginForm.password"
+            #passwordRef="ngModel" 
+            [ngClass]="{'is-invalid': (passwordRef.touched || passwordRef.dirty) && !passwordRef.valid }">
+            <label for="inputPassword">Password</label>
+            <span class="invalid-feedback">
+                <span *ngIf="passwordRef.errors?.['required']">
+                    Prego inserire un valore
+                </span>
+                <span *ngIf="passwordRef.errors?.['pattern']">
+                    Il campo deve avere questo formato: 
+                </span>
+            </span>
+        </div>
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!f.valid">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
+
+
+
+    </form>
+</main>

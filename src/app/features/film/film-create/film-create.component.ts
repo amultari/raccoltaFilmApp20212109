@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Film } from 'src/app/model/film';
 import { Regista } from 'src/app/model/regista';
-import { RegistaService } from 'src/app/regista/regista.service';
+import { RegistaService } from 'src/app/features/regista/regista.service';
 import { FilmService } from '../film.service';
 
 @Component({

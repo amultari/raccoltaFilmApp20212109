@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Regista } from 'src/app/model/regista';
-import { RegistaService } from '../regista.service';
+import { RegistaService } from '../../regista.service';
 
 @Component({
   selector: 'app-regista-list',

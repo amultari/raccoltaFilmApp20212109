@@ -27,15 +27,15 @@
                                 Regista</a></li>
                         <li><a class="dropdown-item" href="">Ricerca
                                 Film</a></li>
-                        <li><a class="dropdown-item" href="">Inserisci
+                        <li><a class="dropdown-item" routerLink="/film/create">Inserisci
                                 Film</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
         <div class="col-md-3 text-end">
-            <p class="navbar-text">Utente: Pippo
-                <a href="">Logout</a>
+            <p class="navbar-text">Utente: {{(authService.getUserLogged()|async)?.username}}
+                <a class="a_simulate" (click)="onLogout()">Logout</a>
             </p>
         </div>
     </div>
