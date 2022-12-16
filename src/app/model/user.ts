@@ -1,6 +1,6 @@
 export interface User {
     username?: string;
     password?: string;
-    token?: string;
+    token: string;
     //role: 'ADMIN' | 'USER';
   }
